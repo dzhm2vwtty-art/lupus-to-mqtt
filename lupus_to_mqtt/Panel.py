@@ -5,6 +5,7 @@ from lupus_to_mqtt import constants as CONST
 from lupus_to_mqtt.Connection import Connection
 from lupus_to_mqtt.Logger import Logger
 from lupus_to_mqtt.MQTT import MQTT
+from lupus_to_mqtt.sensor.LightSensor import LightSensor
 from lupus_to_mqtt.sensor.AlarmSensor import AlarmSensor
 from lupus_to_mqtt.sensor.DoorWindowSensor import DoorWindowSensor
 from lupus_to_mqtt.sensor.PowerSwitch import PowerSwitch
@@ -206,6 +207,9 @@ class Panel:
 
 elif type == CONST.TYPE_MOTION_SENSOR:
     return MotionSensor(data, self)
+
+elif type == CONST.TYPE_LIGHT_SENSOR:
+    return LightSensor(data, self)
 
 elif type == CONST.TYPE_POWER_SWITCH_INTERNAL:
     return PowerSwitch(data, self)
