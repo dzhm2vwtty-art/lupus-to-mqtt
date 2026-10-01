@@ -199,20 +199,24 @@ class Panel:
         name = data.get('name')
         type = data.get('type')
 
-        # Currently, only zone 1 is supported
-        if area != 1:
-            self._logger.logInfo(f'Skipping {name}, type {type}, area {area}, zone {zone}')
-            return None
+     
 
-        if type == CONST.TYPE_DOOR_WINDOW:
-            return DoorWindowSensor(data, self)
-        elif type == CONST.TYPE_POWER_SWITCH_INTERNAL:  # TODO: Add IDs for other switch types
-            return PowerSwitch(data, self)
-        elif type in CONST.TYPE_ALARM:
-            return AlarmSensor(data, self)
-        else:
-            self._logger.logInfo(f'Skipping "{name}", type {type}, area {area}')
-        return None
+   if type == CONST.TYPE_DOOR_WINDOW:
+    return DoorWindowSensor(data, self)
+
+elif type == CONST.TYPE_MOTION_SENSOR:
+    return MotionSensor(data, self)
+
+elif type == CONST.TYPE_POWER_SWITCH_INTERNAL:
+    return PowerSwitch(data, self)
+
+elif type in CONST.TYPE_ALARM:
+    return AlarmSensor(data, self)
+
+else:
+    self._logger.logInfo(f'Skipping "{name}", type {type}, area {area}')
+    return None
+    
 
     @property
     def manufacturer(self):
