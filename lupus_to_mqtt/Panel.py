@@ -1,5 +1,6 @@
 import json
 
+from lupus_to_mqtt.sensor.MotionSensor import MotionSensor
 from lupus_to_mqtt import constants as CONST
 from lupus_to_mqtt.Connection import Connection
 from lupus_to_mqtt.Logger import Logger
